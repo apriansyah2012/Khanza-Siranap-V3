@@ -1,5 +1,5 @@
 
-README.TXT
+
 
 	Software ini adalah Software Menejemen Rumah Sakit/Klinik/
   Puskesmas yang  gratis, open source dan boleh digunakan siapa saja tanpa dikenai 
