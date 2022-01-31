@@ -84,7 +84,7 @@ public class frmUtama extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SIMKES Khanza Service SIRANAP V2 RS. ONLINE");
+        setTitle("SIMKES Khanza Service SIRANAP Versi 3.0 RS. ONLINE");
 
         TeksArea.setColumns(20);
         TeksArea.setRows(5);
@@ -177,10 +177,10 @@ public class frmUtama extends javax.swing.JFrame {
                     nol_detik = "0";
                 }
                 // Membuat String JAM, MENIT, DETIK
-                String jam = nol_jam + Integer.toString(nilai_jam);
+                //String jam = nol_jam + Integer.toString(nilai_jam);
                 String menit = nol_menit + Integer.toString(nilai_menit);
                 String detik = nol_detik + Integer.toString(nilai_detik);
-                TeksArea.append(jam+":"+menit+":"+detik+"\n");
+                TeksArea.append(menit+":"+detik+"\n");
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date();
                 if(detik.equals("01")){
@@ -190,12 +190,12 @@ public class frmUtama extends javax.swing.JFrame {
                         
                     try {
                         koneksi=koneksiDB.condb();
-                        TeksArea.append("Memulai update Siranap\n");
+                        TeksArea.append("Memulai update Siranap Versi 3.0\n");
                         ps=koneksi.prepareStatement(
                                 "select count(siranap_ketersediaan_kamar_c19.ID_ruang) as jumlah_ruang,siranap_ketersediaan_kamar_c19.ID_RSONLINE,"
                                 + "siranap_ketersediaan_kamar_c19.kategori,siranap_ketersediaan_kamar_c19.ID_RUANG,siranap_ketersediaan_kamar_c19.NAMA_RUANG,siranap_ketersediaan_kamar_c19.kelas,"
                                 + "sum(siranap_ketersediaan_kamar_c19.kapasitas)as jumlah_bed,siranap_ketersediaan_kamar_c19.antrian, siranap_ketersediaan_kamar_c19.covid from siranap_ketersediaan_kamar_c19 inner join "
-                                + "bangsal on siranap_ketersediaan_kamar_c19.ID_RUANG=bangsal.kd_bangsal where siranap_ketersediaan_kamar_c19.covid='1' GROUP BY  ID_RSONLINE");
+                                + "bangsal on siranap_ketersediaan_kamar_c19.ID_RUANG=bangsal.kd_bangsal where siranap_ketersediaan_kamar_c19.covid=1 GROUP BY  ID_RSONLINE");
                         
                         try {
                             rs=ps.executeQuery();
@@ -219,13 +219,16 @@ public class frmUtama extends javax.swing.JFrame {
                                     requestJson ="{\"id_tt\":\""+rs.getString("ID_RSONLINE")+"\", "+
                                                   "\"ruang\":\""+rs.getString("NAMA_RUANG")+"\","+ 
                                                   "\"jumlah_ruang\":\""+rs.getString("jumlah_ruang")+"\","+ 
-                                                  "\"jumlah\":\""+rs.getString("jumlah_bed")+"\","+
-                                                  "\"terpakai\":\""+Sequel.cariInteger("select count(kamar.kd_kamar) from kamar inner join siranap_ketersediaan_kamar_c19 on kamar.kd_bangsal=siranap_ketersediaan_kamar_c19.id_ruang  where statusdata='1' and kamar.kelas='"+rs.getString("kelas")+"' and kamar.status='ISI' and siranap_ketersediaan_kamar_c19.covid = '1' group by '"+rs.getString("ID_RSONLINE")+"' ")+"\","+
-                                                 "\"antrian\":\""+rs.getString("antrian")+"\","+ 
+                                                  "\"jumlah\":\""+rs.getString("jumlah_bed")+"\","+ 
+                                                  "\"terpakai\":\""+Sequel.cariInteger("select count(kamar.kd_kamar) from kamar inner join siranap_ketersediaan_kamar_c19 on kamar.kd_bangsal=siranap_ketersediaan_kamar_c19.id_ruang  where statusdata='1' and kamar.kelas='"+rs.getString("kelas")+"' and kamar.status='ISI' and siranap_ketersediaan_kamar_c19.covid = '1' group by '"+rs.getString("ID_RSONLINE")+"' ")+"\","+ 
+                                                  "\"terpakai_suspek\":\""+'0'+"\","+ 
+                                                  "\"terpakai_konfirmasi\":\""+Sequel.cariInteger("select count(kamar.kd_kamar) from kamar inner join siranap_ketersediaan_kamar_c19 on kamar.kd_bangsal=siranap_ketersediaan_kamar_c19.id_ruang  where statusdata='1' and kamar.kelas='"+rs.getString("kelas")+"' and kamar.status='ISI' and siranap_ketersediaan_kamar_c19.covid = '1' group by '"+rs.getString("ID_RSONLINE")+"' ")+"\","+ 
+                                                  "\"antrian\":\""+rs.getString("antrian")+"\","+ 
+                                                  "\"prepare\":\""+'0'+"\","+ 
                                                   "\"prepare_plan\":\""+Sequel.cariInteger("select count(kd_kamar) from kamar where statusdata='1' and kelas='Kelas VIP' and status='DIBOOKING' ")+"\","+
-                                                  "\"covid\":\""+'1'+"\""+
+                                                  "\"covid\":1"+
                                                   "}";
-                                    
+                                                  
                                    
                                     
                                     TeksArea.append("JSON dikirim : "+requestJson+"\n");

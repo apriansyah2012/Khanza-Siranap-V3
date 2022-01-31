@@ -1,4 +1,18 @@
+/*
+ Navicat Premium Data Transfer
 
+ Source Server         : SERVER_OFFLINE
+ Source Server Type    : MySQL
+ Source Server Version : 100146
+ Source Host           : 192.168.1.15:3306
+ Source Schema         : rskh_simrs2020
+
+ Target Server Type    : MySQL
+ Target Server Version : 100146
+ File Encoding         : 65001
+
+ Date: 06/01/2022 13:59:34
+*/
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
