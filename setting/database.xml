@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-    
-	 <entry key="HOST">5k7+C7EnUw9nUv2Nix+DBA==</entry>
+    <entry key="HOST">5k7+C7EnUw9nUv2Nix+DBA==</entry>
     <entry key="DATABASE">AZHNccBwSmSho84f+X8GyQ==</entry>
     <entry key="PORT">nioxtijcpDaKSUiUiP5FAg==</entry>
     <entry key="USER">kMR3WfAwUK6MbhCyydxa0g==</entry>
@@ -44,7 +43,7 @@
     <entry key="URLAPISIRS">http://sirs.yankes.kemkes.go.id/sirsservice</entry>
     <entry key="IDSIRS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="PASSSIRS">l4nh5eVYrLAER/I2A4b3Tw==</entry>
-	<entry key="URLAPISITT">http://sirs.yankes.kemkes.go.id/sirsservice/sitbtraining/sitb/senddata</entry>
+    <entry key="URLAPISITT">http://sirs.yankes.kemkes.go.id/sirsservice/sitbtraining/sitb/senddata</entry>
     <entry key="IDSITT">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="PASSSITT">l4nh5eVYrLAER/I2A4b3Tw==</entry>
     <entry key="URLAPICORONA">http://sirs.kemkes.go.id/fo/index.php</entry>
